@@ -7,7 +7,9 @@ body {
   font-weight: 400;
   letter-spacing: -0.3px;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 /* 헤더 */
 header {
   position: fixed;
@@ -33,11 +35,30 @@ header.scrolled {
 }
 
 nav a {
-  color: white;
+  color: rgba(255,255,255,0.6);
   text-decoration: none;
   margin: 0 15px;
+  position: relative;
+  transition: 0.3s;
+}
+nav a.active {
+  color: white;
 }
 
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: 0.3s;
+}
+
+nav a.active::after {
+  width: 100%;
+}
 /* 히어로 */
 .hero {
   position: relative;
@@ -71,6 +92,7 @@ section {
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
+  scroll-margin-top: 80px;
 }
 
 /* ===== 타임라인 ===== */
@@ -288,4 +310,8 @@ section {
 .national p {
   font-size: 16px;
   color: gray;
+}
+
+#gallery {
+  min-height: 50vh;
 }
