@@ -66,6 +66,8 @@ nav a.active::after {
   justify-content: center;
   align-items: center;
   background: black;
+    padding-top: 180px;
+
 }
 
 .hero-img {
@@ -148,6 +150,7 @@ section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+   scroll-padding-left: 15px;
 }
 
 .grid img {
@@ -156,6 +159,7 @@ section {
   object-fit: cover;
   cursor: pointer;
   transition: 0.3s;
+   flex: 0 0 75%;
 }
 
 .grid img:hover {
@@ -228,8 +232,29 @@ section {
 
   /* 🔥 4. 갤러리 */
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+
+    padding: 0 15px 10px; /* 👉 좌우 여백 추가 */
+    
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .grid img {
+    flex: 0 0 85%;  /* 👉 핵심: 100%가 아니라 85% */
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    scroll-snap-align: center;
+  }
+
+  /* 스크롤바 제거 */
+  .grid::-webkit-scrollbar {
+    display: none;
   }
 
   /* 🔥 5. 타임라인 + 국가대표 구조 변경 */
@@ -279,6 +304,32 @@ section {
     font-size: 14px;
   }
 
+  .video-grid {
+    display: flex !important;   /* 👉 핵심 */
+    overflow-x: auto !important;
+    gap: 16px;
+
+    padding: 0 20px 10px;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .video-card {
+    flex: 0 0 90% !important;   /* 👉 핵심 */
+    scroll-snap-align: center;
+  }
+
+  .video-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .video-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
 }
 
 /* 2컬럼 구조 */
@@ -314,4 +365,58 @@ section {
 
 #gallery {
   min-height: 50vh;
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* 카드 */
+.video-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+    text-decoration: none;
+  color: inherit;
+}
+
+.video-card img {
+  width: 100%;
+  display: block;
+  transition: 0.4s;
+}
+
+/* 호버 효과 */
+.video-card:hover img {
+  transform: scale(1.05);
+  opacity: 0.8;
+}
+
+/* 플레이 버튼 */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.play-button::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 18px;
+  border-style: solid;
+  border-width: 12px 0 12px 18px;
+  border-color: transparent transparent transparent white;
 }
