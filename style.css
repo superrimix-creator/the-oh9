@@ -231,26 +231,26 @@ section {
   }
 
   /* 🔥 4. 갤러리 */
-  .grid {
+   .grid {
     display: flex;
     overflow-x: auto;
     gap: 12px;
 
-    padding: 0 15px 10px; /* 👉 좌우 여백 추가 */
-    
+    padding: 0 20px 10px;
+
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    scroll-padding-left: 20px; /* 👉 추가 (중앙 정렬) */
   }
 
   .grid img {
-    flex: 0 0 85%;  /* 👉 핵심: 100%가 아니라 85% */
+    flex: 0 0 60% !important;  /* 👉 여기 60으로 변경 */
+    max-width: 60%;            /* 👉 이거 추가 (확실히 먹게) */
     aspect-ratio: 1 / 1;
-    object-fit: cover;
 
     border-radius: 10px;
-
     scroll-snap-align: center;
   }
+
 
   /* 스크롤바 제거 */
   .grid::-webkit-scrollbar {
